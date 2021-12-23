@@ -1,5 +1,6 @@
 #!/bin/bash
 
-cd /root/freqtrade/
-. ./.env/bin/activate
-/usr/bin/screen -dmS freqtrade_nfi_bot freqtrade trade -c /root/freqtrade/user_data/config.json -s NostalgiaForInfinityNext
+cd /home/fabian/freqtrade/freqtrade-local/ft_userdata/
+docker-compose stop
+docker-compose build
+docker-compose up -d

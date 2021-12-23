@@ -1,15 +1,17 @@
 #!/bin/bash
-cd /root/freqtrade
-FREQVERSION=`git describe --tags`
+cd /home/fabian/freqtrade/freqtrade-local/ft_userdata
+FREQVERSION='latest docker image'
 
-cd /root/NostalgiaForInfinity
+cd /home/fabian/freqtrade/NostalgiaForInfinity
 GITRESPONSE=`git pull`
 UPDATED='Already up to date.'
 NFIVERSION=`git describe --tags`
 NFICOMMENT=$(git show -s --format='%s')
 
 if [[ $GITRESPONSE != $UPDATED ]]; then
-  python3 /root/nfi-auto-update/notify.py "$FREQVERSION" "$NFIVERSION" "$NFICOMMENT"
+  python3 /home/fabian/freqtrade/nfi-auto-update/notify.py "$FREQVERSION" "$NFIVERSION" "$NFICOMMENT"
   sleep 5
-  /root/nfi-auto-update/restart.sh
+  /home/fabian/freqtrade/nfi-auto-update/copy.sh
+  sleep 5
+  /home/fabian/freqtrade/nfi-auto-update/restart.sh
 fi
